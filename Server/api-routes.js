@@ -38,7 +38,8 @@ router.get('/paymentdetails/:id', getPayment)
 router.put('/paymentdetails/:id', updatePayment)
 
 
-
+router.route('/getCustomerData/:userid')
+.get(api.getCustomerData)
 
 // Export API routes
 module.exports = router;

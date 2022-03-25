@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 //Load Detail Collection
 var LoanDetailSchema = mongoose.Schema({
+    LoanId:{
+        type: Number
+    },
     loan_amount: {
         type: Number
     }

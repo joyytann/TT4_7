@@ -1,7 +1,10 @@
 const auth = require("./authentication");
 var md5 = require('md5');
 const Customer = require('./Models/customer');
-
+const jwt = require("jsonwebtoken");
+const CustomerLoan = require('./Models/CustomerLoan');
+const Loan = require('./Models/LoanDetail');
+const Payment = require('./Models/PaymentDetails');
 exports.register =   function (req, res) {
     var data = 0;
     const maxid =  Customer.find().sort({"CustomerId":-1}).limit(1).exec(function(err,customer)
@@ -39,6 +42,7 @@ exports.Login = function (req, res) {
        var password= req.body.password;
 
        var hashPassword = md5(password);
+       console.log(hashPassword);
        const user =  Customer.findOne({userid:userid}).exec(function(err,customer)
        {
             console.log(customer);
@@ -47,7 +51,23 @@ exports.Login = function (req, res) {
                 console.log(hashPassword);
                 if(hashPassword == comparePassword)
                 {
-                    res.json({message: "Login Successful"});
+                    const token = jwt.sign(
+                         { userid: userid },
+                        process.env.JWT_KEY,
+                        {
+                          expiresIn: "8h",
+                        }
+                      );
+                    customer.token = token;
+                    var data = {
+                        userid: userid,
+                        token:token  
+                    }
+                    res.json(
+                        {
+                            data:data,
+                            message: "Login Successful"
+                        });
                 }
                 else
                 {
@@ -60,5 +80,31 @@ exports.Login = function (req, res) {
             
        });
          
-
     };
+
+    exports.getCustomerData = function (req, res)
+    {
+        const userId = req.params.userid
+
+        //get account balancer
+      Customer.findOne({userid: userId}).exec(function(err,customer)
+        {
+            var balance = customer.balance;
+            var customerId= customer.CustomerId;
+            CustomerLoan.aggregate([
+                { "$match": { CustomerId :customerId } },
+                {$lookup:
+                {
+                    from: "LoanDetails",
+                    localField: "LoanId",
+                    foreignField: "LoanId",
+                    as: "Loan"
+                }
+            }]).exec(function(err,customerLoan) {
+                var data={balance:balance,customerLoan:customerLoan};
+                res.json(data);
+            });
+           
+        });
+
+    }
