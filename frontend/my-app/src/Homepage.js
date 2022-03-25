@@ -3,45 +3,86 @@ import './App.css';
 import React, {Component} from 'react';
 import {Table, Card} from 'semantic-ui-react';
 import Layout from './components/Layout';
+import { Container } from 'semantic-ui-react';
+
 
 class Homepage extends Component {
+    
+    static async getInitialProps(props) {
+        
+    }
+
+    
+
+    renderLoans() {
+        const items = this.props.customers.map(
+
+        )
+    }
   render() {
+      //const axios = require('axios')
+      // axios.get('/user/1')
+
+      //const customer_bal = require()
+      // fetch 
+      // local storage
+      const {Header, Row, HeaderCell, Body} = Table;
+      
     return (
       <Layout>
-        <div>
-          <h3>Hello, Name</h3>
+        <div style={{height:"50px"}}>
+            <div style={{ width:"48%", float: "left", display:"inline-block"}}>
+                 <h3>Hello, Name</h3>
+            </div>
+         
+          
+            <div  style={{float: "right", display:"inline-block"}}>
+                <Card > 
+                    <div class="header">Current bank amount:</div>
+                    User ID needs to be passed
+                    
+                </Card>
+            </div>
+        
+        
         </div>
 
-        <Card>
-          <div class="header">Current bank amount:</div>
-          
-        </Card>
-        <div>
-          <Table class="ui celled table">
-            <thead>
-              <tr><th>Name</th>
-              <th>Age</th>
-              <th>Job</th>
-            </tr></thead>
-            <tbody>
-              <tr>
-                <td data-label="Name">James</td>
-                <td data-label="Age">24</td>
-                <td data-label="Job">Engineer</td>
-              </tr>
-              <tr>
-                <td data-label="Name">Jill</td>
-                <td data-label="Age">26</td>
-                <td data-label="Job">Engineer</td>
-              </tr>
-              <tr>
-                <td data-label="Name">Elyse</td>
-                <td data-label="Age">24</td>
-                <td data-label="Job">Designer</td>
-              </tr>
-            </tbody>
-          </Table>
+        <div style={{ width:"48%", float: "left", display:"inline-block"}}>
+            <h3>Current Loans</h3>
+        <Table class="ui celled table">
+            <Header>
+                <Row>
+                    <HeaderCell>Loan</HeaderCell>
+                    <HeaderCell>Loan Amount</HeaderCell>
+            
+                </Row>
+
+            </Header>
+            <Body>
+
+            </Body>
+            
+        </Table>
         </div>
+        <div style={{float:"right", width:"48%", display:"inline-block"}}>
+            <h3>Loan History</h3>
+        <Table class="ui celled table">
+            <Header>
+                <Row>
+                    <HeaderCell>Loan</HeaderCell>
+                    <HeaderCell>Loan Amount</HeaderCell>
+            
+                </Row>
+
+            </Header>
+            <Body>
+
+            </Body>
+            
+        </Table>
+        </div>
+        
+        
 
       </Layout>
       

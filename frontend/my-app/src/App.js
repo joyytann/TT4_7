@@ -1,9 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 function App() {
   return (
     <div className="App">
+      <Router>
+        <routes>
+
+        </routes>
+      </Router>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
