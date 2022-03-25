@@ -101,8 +101,18 @@ exports.Login = function (req, res) {
                     as: "Loan"
                 }
             }]).exec(function(err,customerLoan) {
-                var data={balance:balance,customerLoan:customerLoan};
+                var newArray=[]
+                for(var i = 0; i<customerLoan.length; i++){
+                    newArray.push(customerLoan[i].LoanId);
+                }
+                Payment.find({LoadId: {$in:newArray}}).exec(function(err,payment){
+                    console.log(payment);
+                    var data={balance:balance,customerLoan:customerLoan,PaymentDetail:payment};
                 res.json(data);
+                }
+                )
+
+                
             });
            
         });
