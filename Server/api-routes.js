@@ -41,5 +41,8 @@ router.put('/paymentdetails/:id', updatePayment)
 router.route('/getCustomerData/:userid')
 .get(api.getCustomerData)
 
+router.route('/InsertLoanDetail')
+.post(api.insertToLoanDetails)
+
 // Export API routes
 module.exports = router;

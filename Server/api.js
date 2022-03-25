@@ -61,6 +61,7 @@ exports.Login = function (req, res) {
                     customer.token = token;
                     var data = {
                         userid: userid,
+                        customerId:customer.CustomerId,
                         token:token  
                     }
                     res.json(
@@ -117,4 +118,32 @@ exports.Login = function (req, res) {
            
         });
 
+    };
+
+    exports.insertToLoanDetails = function (req, res)
+    {
+        const maxid =  Loan.find().sort({"LoanId":-1}).limit(1).exec(function(err,loandetails)
+        {
+           data = loandetails[0].LoanId + 1;
+
+           var userId = req.body.userid;
+           // var loanAmount= req.body.loan_amount;
+   
+           var loan  = new Loan();
+           loan.loan_amount =  req.body.loan_amount;
+           loan.LoanId = data;
+           loan.save(function(err){
+               console.log(loan);
+           });
+           var customerLoan = new CustomerLoan();
+           customerLoan.CustomerId = userId;
+           customerLoan.LoanId = data;
+           customerLoan.save(function(err){
+            console.log(customerLoan);
+            res.json("Successfully Insert")
+        });
+        });
+      
     }
+
+    
