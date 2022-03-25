@@ -12,6 +12,15 @@ var CustomerSchema = mongoose.Schema({
     },
     balance: {
         type: Number
+    },
+    userid:{
+        type:String
+    },
+    password:{ 
+        type:String
+    },
+    CustomerId:{
+        type:Number
     }
  
 },{ collection: 'customer' }
