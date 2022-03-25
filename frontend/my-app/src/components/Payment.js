@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Table, Card} from 'semantic-ui-react';
 import {Container} from 'semantic-ui-react';
 
-class Loan extends Component {
+class Payment extends Component {
   render() {
     return (
       <Container>
@@ -17,21 +17,21 @@ class Loan extends Component {
 
           <div class="container-md mt-3 border">
             
-          <form class="ui form">
-            <label>Pending Loan Amount: </label>
-            
-            <div class="field">
-              <label>How much do you wish to loan?</label>
-              <input type="number" name="loan_amount" placeholder="Loan Amount"/>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" tabindex="0" class="hidden"/>
-                <label>I agree to the Terms and Conditions</label>
-              </div>
-            </div>
-            <button class="ui button" type="submit">Submit</button>
-          </form>
+          <table class="ui celled table">
+            <thead>
+              <tr><th>Loan ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="LoanId">001</td>
+                <td data-label="loan_amount">100</td>
+                <td data-label="Status">Paid</td>
+              </tr>
+
+            </tbody>
+          </table>
           
 
             
@@ -45,4 +45,4 @@ class Loan extends Component {
   
 }
 
-export default Loan;
+export default Payment;

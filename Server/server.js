@@ -5,6 +5,8 @@ let bodyParser = require('body-parser');
 // Import Mongoose
 let mongoose = require('mongoose');
 
+require("dotenv").config();
+
 // Initialise the app
 let app = express();
 // Import routes
@@ -15,7 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb+srv://hackathon:hackathon123@cluster0.swkxg.mongodb.net/test', { useNewUrlParser: true});
+mongoose.connect('mongodb+srv://hackathon:hackathon123@cluster0.swkxg.mongodb.net/tt4', { useNewUrlParser: true});
 var db = mongoose.connection;
 
 // Added check for DB connection

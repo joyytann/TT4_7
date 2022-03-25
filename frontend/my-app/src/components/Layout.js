@@ -1,49 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-import React, {Component} from 'react';
-import {Table, Card} from 'semantic-ui-react';
-import Layout from './components/Layout';
+import React from 'react';
+import {Container} from 'semantic-ui-react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Homepage from '../Homepage';
 
-class Homepage extends Component {
-  render() {
+// Essentially the nav bar
+// Just add <Layout> into your js file and encapsulate your code within.
+// TODO: Link up to the various pages
+export default props => {
     return (
-      <Layout>
-        <div>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
-        </div>
+        <Container>
+           
+               <link
+                    async
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
+                /> 
 
-        <div class="container-fluid">
-          <h1>Apply For New Loan</h1>
-
-          <div class="container-md mt-3 border">
+                <link href="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"/>
+               
+                    <div class="ui secondary pointing menu">
+                        
+                        <a class="item">
+                            Home
+                        </a>
+                        <a class="item">
+                            Loan
+                        </a>
+                        <a class="item">
+                            Payment
+                        </a>
+                        <div class="right menu">
+                            <a class="ui item">
+                            Logout
+                            </a>
+                        </div>
+                    </div>
+                
+                
             
-          <form class="ui form">
-            <label>Pending Loan Amount: </label>
             
-            <div class="field">
-              <label>How much do you wish to loan?</label>
-              <input type="number" name="loan_amount" placeholder="Loan Amount"/>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" tabindex="0" class="hidden"/>
-                <label>I agree to the Terms and Conditions</label>
-              </div>
-            </div>
-            <button class="ui button" type="submit">Submit</button>
-          </form>
-          
-
-            
-          </div>
-        </div>
-      </Layout>
-      
-
-  );
-  }
-  
-}
-
-export default Homepage;
+           
+            {props.children}
+        </Container>
+    )
+};
