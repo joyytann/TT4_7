@@ -5,7 +5,7 @@ var PaymentSchema = mongoose.Schema({
         type: Number
     },
     payment_date: {
-        type: date
+        type: Date
     },
     payment_amount: {
         type: Number
