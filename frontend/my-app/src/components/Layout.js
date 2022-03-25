@@ -20,13 +20,13 @@ export default props => {
                
                     <div class="ui secondary pointing menu">
                         
-                        <a class="item">
+                        <a class="item" href='/'>
                             Home
                         </a>
-                        <a class="item">
+                        <a class="item" href='/Loans'>
                             Loan
                         </a>
-                        <a class="item">
+                        <a class="item" href='Payment'>
                             Payment
                         </a>
                         <div class="right menu">
